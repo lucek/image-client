@@ -1,0 +1,38 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "babel"
+  ],
+  "rules": {
+    "react/prefer-es6-class": [
+      1,
+      "never"
+    ],
+    "new-cap": [
+      2,
+      {
+        "capIsNewExceptions": [
+          "Map",
+          "OrderedMap",
+          "List"
+        ]
+      }
+    ],
+    "no-unused-expressions": [
+      "error", {
+        "allowShortCircuit": true,
+        "allowTernary": true
+      }
+    ],
+    "quote-props": [
+      "error",
+      "consistent-as-needed"
+    ],
+    "no-use-before-define": [
+      "error",
+      { "functions": false }
+    ]
+  }
+}
