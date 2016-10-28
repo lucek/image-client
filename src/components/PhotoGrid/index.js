@@ -1,5 +1,6 @@
 import React from 'react';
 import SinglePhoto from '../SinglePhoto';
+import './PhotoGrid.scss';
 
 const PhotoGrid = (props) => {
   const photos = props.photos.map((photo) => {
@@ -9,7 +10,7 @@ const PhotoGrid = (props) => {
   });
 
   return (
-    <div>{photos}</div>
+    <div className="photoGrid">{photos}</div>
   );
 };
 

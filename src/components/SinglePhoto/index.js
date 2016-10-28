@@ -1,8 +1,9 @@
 import React from 'react';
+import './SinglePhoto.scss';
 
 const SinglePhoto = (props) => {
   return (
-    <img src={props.photo.link} alt={props.photo.title} />
+    <img className="singlePhoto" src={props.photo.link} alt={props.photo.title} />
   );
 };
 
