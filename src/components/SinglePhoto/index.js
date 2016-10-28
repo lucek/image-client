@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 import './SinglePhoto.scss';
 
 const SinglePhoto = (props) => {
   return (
-    <img className="singlePhoto" src={props.photo.link} alt={props.photo.title} />
+    <Link to={`/photos/${props.photo.id}`}>
+      <img className="singlePhoto" src={props.photo.link} alt={props.photo.title} />
+    </Link>
   );
 };
 

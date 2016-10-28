@@ -28,7 +28,7 @@ const routes = (
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          <Route path="/photo" component={Photo} />
+          <Route path="/photos/:photoId" component={Photo} />
         </Route>
       </Router>
     </div>
