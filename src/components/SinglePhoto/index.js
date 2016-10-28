@@ -4,7 +4,7 @@ import './SinglePhoto.scss';
 
 const SinglePhoto = (props) => {
   const width = props.width || '250px';
-  const height = width;
+  const height = props.height || width;
 
   return (
     <Link to={`/photos/${props.photo.id}`}>
@@ -20,6 +20,7 @@ const SinglePhoto = (props) => {
 SinglePhoto.propTypes = {
   photo: React.PropTypes.object.isRequired,
   width: React.PropTypes.string,
+  height: React.PropTypes.string,
 };
 
 export default SinglePhoto;

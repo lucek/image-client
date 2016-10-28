@@ -6,6 +6,7 @@ import imgurConfig from '../../../config/imgur.config';
 import Header from '../../components/Header';
 
 import * as Actions from '../../actions';
+import './App.scss';
 
 const StoreState = (state) => ({
   photos: state.photosReducer.photos,
@@ -34,7 +35,9 @@ const App = React.createClass({
     return (
       <div>
         <Header tags={this.props.tags} />
-        {this.props.children}
+        <div className="content">
+          {this.props.children}
+        </div>
       </div>
     );
   },
