@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { connect } from 'react-redux';
 import rest from 'rest';
 import imgurConfig from '../../../config/imgur.config';
