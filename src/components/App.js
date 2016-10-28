@@ -3,6 +3,7 @@ import rest from 'rest';
 import sampleSize from 'lodash.samplesize';
 import { connect } from 'react-redux';
 import imgurConfig from '../../config/imgur.config';
+import Header from './Header';
 
 import * as Actions from '../actions/actions';
 
@@ -29,22 +30,10 @@ const App = React.createClass({
     });
   },
 
-  renderTags(tags) {
-    return (
-      this.props.tags.map((tag) => {
-        return (
-          <div key={tag.id}>
-            {tag.name}
-          </div>
-        );
-      })
-    );
-  },
-
   render() {
     return (
       <div>
-        {this.renderTags()}
+        <Header tags={this.props.tags} />
         {this.props.children}
       </div>
     );
