@@ -2,10 +2,10 @@ import React from 'react';
 import rest from 'rest';
 import sampleSize from 'lodash.samplesize';
 import { connect } from 'react-redux';
-import imgurConfig from '../../config/imgur.config';
-import Header from './Header';
+import imgurConfig from '../../../config/imgur.config';
+import Header from '../../components/Header';
 
-import * as Actions from '../actions/actions';
+import * as Actions from '../../actions';
 
 const StoreState = (state) => ({
   photos: state.photosReducer.photos,

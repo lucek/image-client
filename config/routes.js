@@ -6,9 +6,9 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import photosReducer from '../src/reducers/photosReducer';
 import tagsReducer from '../src/reducers/tagsReducer';
-import App from '../src/components/App';
-import Photos from '../src/components/Photos';
-import Photo from '../src/components/Photo';
+import App from '../src/routes/App';
+import Photos from '../src/routes/Photos';
+import Photo from '../src/routes/Photo';
 
 const reducer = combineReducers({
   photosReducer,
