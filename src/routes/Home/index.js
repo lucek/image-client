@@ -11,21 +11,31 @@ const StoreState = (state) => ({
   tags: state.tagsReducer.tags,
 });
 
-const Home = (props) => {
-  rest(imgurConfig.endpoints.photos).then((response) => {
-    const { dispatch } = props;
-    const apiResponse = JSON.parse(response.entity);
-    const photos = apiResponse.data.filter((photo) => {
-      return photo.type === 'image/jpeg';
+const Home = React.createClass({
+  componentDidMount() {
+    this.downloadPhotos();
+  },
+
+  downloadPhotos() {
+    const that = this;
+
+    rest(imgurConfig.endpoints.photos).then((response) => {
+      const { dispatch } = that.props;
+      const apiResponse = JSON.parse(response.entity);
+      const photos = apiResponse.data.filter((photo) => {
+        return photo.type === 'image/jpeg';
+      });
+      const action = Actions.setPhotos(sampleSize(photos, 20));
+
+      dispatch(action);
     });
-    const action = Actions.setPhotos(sampleSize(photos, 20));
+  },
 
-    dispatch(action);
-  });
-
-  return (
-    <PhotoGrid photos={props.photos} />
-  );
-};
+  render() {
+    return (
+      <PhotoGrid photos={this.props.photos} />
+    );
+  },
+});
 
 export default connect(StoreState)(Home);

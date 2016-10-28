@@ -4,7 +4,7 @@ import SinglePhoto from '../SinglePhoto';
 const PhotoGrid = (props) => {
   const photos = props.photos.map((photo) => {
     return (
-      <SinglePhoto photo={photo} />
+      <SinglePhoto key={photo.id} photo={photo} />
     );
   });
 
