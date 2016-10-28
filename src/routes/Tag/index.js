@@ -15,7 +15,7 @@ const Tag = React.createClass({
     });
   },
 
-  componentDidMount() {
+  render() {
     const tag = this.props.tags.find((tag) => {
       return tag.id === parseInt(this.props.params.tagId);
     });
@@ -31,12 +31,10 @@ const Tag = React.createClass({
 
         this.setState({
           photos,
-        });
+        })
       });
     }
-  },
 
-  render() {
     return (
       <div>
         <PhotoGrid photos={this.state.photos} />
