@@ -5,7 +5,7 @@ import './PhotoGrid.scss';
 const PhotoGrid = (props) => {
   const photos = props.photos.map((photo) => {
     return (
-      <SinglePhoto key={photo.id} photo={photo} />
+      <SinglePhoto key={photo.id} photo={photo} width="250px" />
     );
   });
 
