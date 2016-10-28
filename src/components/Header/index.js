@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router';
 import './Header.scss';
 
 const Header = (props) => {
   const tags = props.tags.map((tag) => {
     return (
-      <div className="header__link" key={tag.id}>
+      <Link to={`/tags/${tag.id}`} className="header__link" key={tag.id}>
         {tag.name}
-      </div>
+      </Link>
     );
   });
 

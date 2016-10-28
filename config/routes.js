@@ -9,6 +9,7 @@ import tagsReducer from '../src/reducers/tagsReducer';
 import App from '../src/routes/App';
 import Home from '../src/routes/Home';
 import Photo from '../src/routes/Photo';
+import Tag from '../src/routes/Tag';
 
 const reducer = combineReducers({
   photosReducer,
@@ -29,6 +30,7 @@ const routes = (
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="/photos/:photoId" component={Photo} />
+          <Route path="/tags/:tagId" component={Tag} />
         </Route>
       </Router>
     </div>
