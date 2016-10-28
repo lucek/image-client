@@ -12,9 +12,12 @@ const Header = (props) => {
 
   return (
     <header>
-      <nav className="header__navigation">
-        {tags}
-      </nav>
+      <div className="header__limiter">
+        <div className="header__heading">Imgur client</div>
+        <nav className="header__navigation">
+          {tags}
+        </nav>
+      </div>
     </header>
   );
 };
