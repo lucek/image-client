@@ -19,16 +19,18 @@ const Home = React.createClass({
   downloadPhotos() {
     const that = this;
 
-    rest(imgurConfig.endpoints.photos).then((response) => {
-      const { dispatch } = that.props;
-      const apiResponse = JSON.parse(response.entity);
-      const photos = apiResponse.data.filter((photo) => {
-        return photo.type === 'image/jpeg';
-      });
-      const action = Actions.setPhotos(sampleSize(photos, 20));
+    rest({
+      path: imgurConfig.endpoints.photos,
+      headers: { Authorization: `Client-Id ${imgurConfig.clientId}` } }).then((response) => {
+        const { dispatch } = that.props;
+        const apiResponse = JSON.parse(response.entity);
+        const photos = apiResponse.data.filter((photo) => {
+          return photo.type === 'image/jpeg';
+        });
+        const action = Actions.setPhotos(sampleSize(photos, 20));
 
-      dispatch(action);
-    });
+        dispatch(action);
+      });
   },
 
   render() {
