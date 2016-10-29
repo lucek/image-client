@@ -1,4 +1,5 @@
 import React from 'react';
+import Heading from './Heading';
 import TagList from '../TagList';
 import './Header.scss';
 
@@ -16,7 +17,7 @@ const Header = (props) => {
   return (
     <header>
       <div className="header__limiter">
-        <div className="header__heading">Imgur client</div>
+        <Heading />
         {tagList}
       </div>
     </header>

@@ -9,14 +9,6 @@ header {
   box-sizing: border-box;
 }
 
-.header__heading {
-  font-size: 20px;
-  line-height: 40px;
-  float: left;
-  display: inline-block;
-  color: $header-heading;
-}
-
 .header__navigation {
   line-height: 40px;
   float: right;
