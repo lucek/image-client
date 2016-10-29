@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
+import camelCase from 'lodash.camelcase';
 import './TagList.scss';
 
 const TagList = (props) => {
   const tags = props.tags.map((tag) => {
     return (
       <Link to={`/tags/${tag.id}`} className="tagList__link" key={tag.id}>
-        {tag.name}
+        {`#${camelCase(tag.name)}`}
       </Link>
     );
   });
