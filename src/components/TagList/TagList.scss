@@ -1,0 +1,20 @@
+@import '../../ui/variables';
+
+.tagList__link {
+  display: inline-block;
+  padding: 0 5px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 0.75;
+  border-right: 2px solid #3a3a3a;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    opacity: 1;
+    color: $header-link--hover;
+  }
+}
