@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "css-loader": "^0.25.0",
+    "immutable": "^3.8.1",
     "lodash.samplesize": "^4.2.0",
     "node-sass": "^3.10.1",
     "postcss-loader": "^1.1.0",
