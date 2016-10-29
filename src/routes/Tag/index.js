@@ -1,8 +1,8 @@
-import React from 'react'
-import rest from 'rest';
+import React from 'react';
 import { connect } from 'react-redux';
 import { fromJS } from 'immutable';
 import PhotoGrid from '../../components/PhotoGrid';
+import RestWrapper from '../../data/RestWrapper';
 import imgurConfig from '../../../config/imgur.config';
 import sampleSize from 'lodash.samplesize';
 import * as Actions from '../../actions';
@@ -20,6 +20,7 @@ const Tag = React.createClass({
   },
 
   componentDidMount() {
+    this.restWrapper = new RestWrapper();
     this._downloadPhotosForTag(this.props.params.tagId);
   },
 
@@ -43,17 +44,17 @@ const Tag = React.createClass({
     });
 
     const url = `${imgurConfig.endpoints.tagPhotos}${tag.id}/viral/1`;
-    const that = this;
+    this.restWrapper.get(url, this._setPhotos);
+  },
 
-    rest({ path: url, headers: {Authorization: `Client-Id ${imgurConfig.clientId}`} }).then((response) => {
-      const { dispatch } = that.props;
-      const apiResponse = JSON.parse(response.entity);
-      const photos = apiResponse.data.filter((photo) => {
-        return photo.type === 'image/jpeg';
-      });
-      const action = Actions.setPhotos(sampleSize(photos, 20));
-      dispatch(action);
+  _setPhotos(data) {
+    const { dispatch } = this.props;
+    const apiResponse = JSON.parse(data.entity);
+    const photos = apiResponse.data.filter((photo) => {
+      return photo.type === 'image/jpeg';
     });
+    const action = Actions.setPhotos(sampleSize(photos, 20));
+    dispatch(action);
   },
 
   render() {

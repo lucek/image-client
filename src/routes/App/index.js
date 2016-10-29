@@ -1,5 +1,5 @@
 import React from 'react';
-import rest from 'rest';
+import RestWrapper from '../../data/RestWrapper';
 import sampleSize from 'lodash.samplesize';
 import { connect } from 'react-redux';
 import imgurConfig from '../../../config/imgur.config';
@@ -15,20 +15,21 @@ const StoreState = (state) => ({
 
 const App = React.createClass({
   componentDidMount() {
-    this.downloadTags();
+    this.restWrapper = new RestWrapper();
+    this._downloadTags();
   },
 
-  downloadTags() {
-    const that = this;
+  _downloadTags() {
+    this.restWrapper.get(imgurConfig.endpoints.tags, this._setTags);
+  },
 
-    rest(imgurConfig.endpoints.tags).then((response) => {
-      const { dispatch } = that.props;
-      const apiResponse = JSON.parse(response.entity);
-      const tags = apiResponse.data;
-      const action = Actions.setTags(sampleSize(tags, 5));
+  _setTags(response) {
+    const { dispatch } = this.props;
+    const apiResponse = JSON.parse(response.entity);
+    const tags = apiResponse.data;
+    const action = Actions.setTags(sampleSize(tags, 5));
 
-      dispatch(action);
-    });
+    dispatch(action);
   },
 
   render() {
