@@ -1,30 +1,30 @@
 import React from 'react';
-import { Link } from 'react-router';
+import TagList from '../TagList';
 import './Header.scss';
 
 const Header = (props) => {
-  const tags = props.tags.map((tag) => {
-    return (
-      <Link to={`/tags/${tag.id}`} className="header__link" key={tag.id}>
-        {tag.name}
-      </Link>
+  let tagList;
+
+  if (props.tags) {
+    tagList = (
+      <nav className="header__navigation">
+        <TagList tags={props.tags} />
+      </nav>
     );
-  });
+  }
 
   return (
     <header>
       <div className="header__limiter">
         <div className="header__heading">Imgur client</div>
-        <nav className="header__navigation">
-          {tags}
-        </nav>
+        {tagList}
       </div>
     </header>
   );
 };
 
 Header.propTypes = {
-  tags: React.PropTypes.array.isRequired,
+  tags: React.PropTypes.array,
 };
 
 export default Header;
