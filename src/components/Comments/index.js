@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
+import './Comments.scss';
 
 const Comments = (props) => {
   const comments = props.comments.map((comment) => {

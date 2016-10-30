@@ -5,6 +5,7 @@ import imgurConfig from '../../../config/imgur.config';
 import RestWrapper from '../../data/RestWrapper';
 import SinglePhoto from '../../components/SinglePhoto';
 import Comments from '../../components/Comments';
+import './Photo.scss';
 
 const StoreState = (state) => ({
   photos: state.photosReducer.photos,
@@ -39,9 +40,13 @@ const Photo = React.createClass({
 
   render() {
     return (
-      <div>
-        <SinglePhoto photo={this.state.photo} width="500px" height="auto" />
-        <Comments comments={this.state.comments} />
+      <div className="photoRoute">
+        <div className="photoRoute__photo">
+          <SinglePhoto photo={this.state.photo} width="100%" height="auto" />
+        </div>
+        <div className="photoRoute__comments">
+          <Comments comments={this.state.comments} />
+        </div>
       </div>
     );
   },

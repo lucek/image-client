@@ -7,13 +7,15 @@ const SinglePhoto = (props) => {
   const height = props.height || width;
 
   return (
-    <Link to={`/photos/${props.photo.id}`}>
-      <img
-        style={{ width, height }}
-        className="singlePhoto"
-        src={props.photo.link} alt={props.photo.title}
-      />
-    </Link>
+    <div className="singlePhoto">
+      <Link to={`/photos/${props.photo.id}`}>
+        <img
+          style={{ width, height }}
+          className="singlePhoto__image"
+          src={props.photo.link} alt={props.photo.title}
+        />
+      </Link>
+    </div>
   );
 };
 
