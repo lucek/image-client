@@ -18,6 +18,7 @@ const Comments = React.createClass({
   },
 
   componentDidMount() {
+    this.commentsArray = [];
     this.restWrapper = new RestWrapper();
     this._downloadComments();
   },
@@ -42,15 +43,32 @@ const Comments = React.createClass({
     });
   },
 
+  _renderComments(comments, level) {
+    const that = this;
+
+    comments.map((comment) => {
+      this.commentsArray.push(that._renderComment(comment, level));
+
+      for (let i = 0; i < comment.children.length; i++) {
+        const nextLevel = level + 1;
+        return that._renderComments(comment.children, nextLevel);
+      }
+    });
+
+    return this.commentsArray;
+  },
+
+  _renderComment(comment, level) {
+    return (
+      <Comment level={level} key={comment.id} comment={comment} />
+    );
+  },
+
   render() {
     let comments = (<LoadingWidget />);
 
     if (this.state.comments && this.state.commentsLoaded) {
-      comments = this.state.comments.map((comment) => {
-        return (
-          <Comment key={comment.id} comment={comment} />
-        );
-      });
+      comments = this._renderComments(this.state.comments, 0);
     }
 
     return (

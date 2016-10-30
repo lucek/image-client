@@ -3,9 +3,11 @@ import './Comment.scss';
 
 const Comment = (props) => {
   const comment = props.comment;
+  const level = props.level;
+  const width = `${95 - (props.level*5)}%`;
 
   return (
-    <div key={comment.id} className="comment">
+    <div style={{ width }} key={comment.id} className="comment">
       <div className="comment__header">
         <div className="comment__header__author">
           {comment.author}
@@ -20,6 +22,7 @@ const Comment = (props) => {
 
 Comment.propTypes = {
   comment: React.PropTypes.object.isRequired,
+  level: React.PropTypes.number.isRequired,
 };
 
 export default Comment;
