@@ -33,7 +33,7 @@ const Comments = React.createClass({
   render() {
     const comments = this.state.comments.map((comment) => {
       return (
-        <Comment comment={comment} />
+        <Comment key={comment.id} comment={comment} />
       );
     });
 
