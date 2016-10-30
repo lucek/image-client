@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RestWrapper from '../../data/RestWrapper';
 import SinglePhoto from '../SinglePhoto';
-import imgurConfig from '../../../config/imgur.config';
 import sampleSize from 'lodash.samplesize';
 import * as Actions from '../../actions';
 import LoadingWidget from '../../widgets/LoadingWidget';
@@ -14,7 +13,7 @@ const StoreState = (state) => ({
 
 const PhotoGrid = React.createClass({
   propTypes: {
-    photos: React.PropTypes.array.isRequired,
+    url: React.PropTypes.string.isRequired,
   },
 
   getInitialState() {
@@ -25,14 +24,23 @@ const PhotoGrid = React.createClass({
 
   componentDidMount() {
     this.restWrapper = new RestWrapper();
-    this._downloadPhotos();
+
+    if (this.props.url !== '') {
+      this._downloadPhotos();
+    }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.url !== this.props.url) {
+      this._downloadPhotos();
+    }
   },
 
   _downloadPhotos() {
     this.setState({
       photosLoaded: false,
     }, () => {
-      this.restWrapper.get(imgurConfig.endpoints.photos, this._setPhotos);
+      this.restWrapper.get(this.props.url, this._setPhotos);
     });
   },
 
