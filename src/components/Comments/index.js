@@ -36,7 +36,9 @@ const Comments = React.createClass({
   _setComments(response) {
     this.setState({
       commentsLoaded: true,
-      comments: JSON.parse(response.entity).data,
+      comments: JSON.parse(response.entity).data.filter((comment) => {
+        return comment.deleted === false;
+      }),
     });
   },
 
