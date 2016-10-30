@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import RestWrapper from '../../data/RestWrapper';
 import SinglePhoto from '../SinglePhoto';
 import sampleSize from 'lodash.samplesize';
+import imgurConfig from '../../../config/imgur.config';
 import * as Actions from '../../actions';
 import LoadingWidget from '../../widgets/LoadingWidget';
 import './PhotoGrid.scss';
@@ -14,6 +15,10 @@ const StoreState = (state) => ({
 const PhotoGrid = React.createClass({
   propTypes: {
     url: React.PropTypes.string.isRequired,
+  },
+
+  statics: {
+    photosCount: 20,
   },
 
   getInitialState() {
@@ -40,17 +45,45 @@ const PhotoGrid = React.createClass({
     this.setState({
       photosLoaded: false,
     }, () => {
-      this.restWrapper.get(this.props.url, this._setPhotos);
+      this.restWrapper.get(this.props.url, this._checkPhotosLength);
     });
   },
 
-  _setPhotos(response) {
-    const { dispatch } = this.props;
+  _checkPhotosLength(response) {
     const apiResponse = JSON.parse(response.entity);
     const photos = apiResponse.data.filter((photo) => {
-      return photo.type === 'image/jpeg';
+      return photo.is_album === false;
     });
-    const action = Actions.setPhotos(sampleSize(photos, 20));
+
+    if (photos.length < PhotoGrid.photosCount) {
+      const missingCount = PhotoGrid.photosCount - photos.length;
+      const albums = apiResponse.data.filter((photo) => {
+        return photo.is_album === true;
+      });
+
+      sampleSize(albums, missingCount).forEach((album) => {
+        const albumCover = album.cover;
+        const photoIds = photos.map((photo) => {
+          return photo.id;
+        });
+
+        if (photoIds.indexOf(albumCover) === -1) {
+          this.restWrapper.get(`${imgurConfig.endpoints.photo}${album.cover}`, (_response) => {
+            photos.push(JSON.parse(_response.entity).data);
+            if (photos.length === PhotoGrid.photosCount) {
+              this._setPhotos(photos);
+            }
+          });
+        }
+      });
+    } else {
+      this._setPhotos(photos);
+    }
+  },
+
+  _setPhotos(photos) {
+    const { dispatch } = this.props;
+    const action = Actions.setPhotos(sampleSize(photos, PhotoGrid.photosCount));
 
     this.setState({
       photosLoaded: true,
