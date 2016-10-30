@@ -15,10 +15,6 @@ const StoreState = (state) => ({
 });
 
 const Header = React.createClass({
-  propTypes: {
-    tags: React.PropTypes.array,
-  },
-
   getInitialState() {
     return ({
       tagsLoaded: false,

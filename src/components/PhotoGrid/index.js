@@ -60,7 +60,7 @@ const PhotoGrid = React.createClass({
   },
 
   render() {
-    let photos = <LoadingWidget />
+    let photos = <LoadingWidget />;
 
     if (this.state.photosLoaded) {
       photos = this.props.photos.map((photo) => {
