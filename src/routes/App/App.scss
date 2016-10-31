@@ -1,6 +1,8 @@
 @import '../../ui/variables';
 
 .content {
+  font-family: $fontFamily;
   background: $content-background;
   width: 100%;
+  padding-top: 10px;
 }
