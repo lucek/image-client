@@ -7,7 +7,6 @@ import './Photo.scss';
 
 const StoreState = (state) => ({
   photos: state.photosReducer.photos,
-  tags: state.tagsReducer.tags,
 });
 
 const Photo = (props) => {
@@ -51,6 +50,10 @@ const Photo = (props) => {
       </div>
     </div>
   );
+};
+
+Photo.PropTypes = {
+  photos: React.PropTypes.array,
 };
 
 export default connect(StoreState)(Photo);
