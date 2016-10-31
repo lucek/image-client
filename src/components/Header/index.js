@@ -15,6 +15,10 @@ const StoreState = (state) => ({
 });
 
 const Header = React.createClass({
+  propTypes: {
+    tags: React.PropTypes.array,
+  },
+
   getInitialState() {
     return ({
       tagsLoaded: false,
@@ -68,6 +72,5 @@ const Header = React.createClass({
     );
   },
 });
-
 
 export default connect(StoreState)(Header);
