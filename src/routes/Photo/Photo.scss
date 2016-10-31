@@ -1,5 +1,21 @@
 .photoRoute__photo, .photoRoute__comments {
-  width: 50%;
+  width: 45%;
   display: inline-block;
   vertical-align: top;
+  padding: 20px;
+}
+
+.photoRoute__photo__title {
+  color: #fff;
+  font-size: 20px;
+}
+
+.photoRoute__photo__date {
+  color: #3a3a3a;
+  font-size: 14px;
+}
+
+.photoROute__photo__description {
+  color: #fff;
+  font-size: 16px;
 }
