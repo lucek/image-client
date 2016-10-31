@@ -11,6 +11,10 @@ const StoreState = (state) => ({
 });
 
 const Tag = React.createClass({
+  propTypes: {
+    tags: React.PropTypes.array.isRequired,
+  },
+
   getInitialState() {
     return ({
       currentTagId: this.props.params.tagId,
