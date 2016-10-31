@@ -35,11 +35,17 @@ const Comments = React.createClass({
   },
 
   _setComments(response) {
+    let comments = [];
+
+    if (response.status.code === 200) {
+      comments = JSON.parse(response.entity).data.filter((comment) => {
+        return comment.deleted === false;
+      });
+    }
+
     this.setState({
       commentsLoaded: true,
-      comments: JSON.parse(response.entity).data.filter((comment) => {
-        return comment.deleted === false;
-      }),
+      comments,
     });
   },
 
@@ -64,11 +70,23 @@ const Comments = React.createClass({
     );
   },
 
+  _renderNoComments() {
+    return (
+      <div className="comments__noComments">
+        <i>No comments</i>
+      </div>
+    );
+  },
+
   render() {
     let comments = (<LoadingWidget />);
 
     if (this.state.comments && this.state.commentsLoaded) {
-      comments = this._renderComments(this.state.comments, 0);
+      if (this.state.comments.length !== 0) {
+        comments = this._renderComments(this.state.comments, 0);
+      } else {
+        comments = this._renderNoComments();
+      }
     }
 
     return (
