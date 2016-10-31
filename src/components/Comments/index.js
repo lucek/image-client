@@ -52,7 +52,9 @@ const Comments = React.createClass({
   _renderComments(comments, level) {
     const that = this;
 
-    comments.map((comment) => {
+    comments.sort((a, b) => {
+      return a.datetime - b.datetime;
+    }).map((comment) => {
       this.commentsArray.push(that._renderComment(comment, level));
 
       for (let i = 0; i < comment.children.length; i++) {
