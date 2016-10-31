@@ -57,7 +57,7 @@ const Header = React.createClass({
     }
 
     return (
-      <header>
+      <header className="header">
         <div className="header__limiter">
           <Heading />
           <nav className="header__navigation">

@@ -7,8 +7,8 @@
   display: inline-block;
   color: $header-heading;
   text-decoration: none;
+}
 
-  &:hover {
-    color: $header-link--hover;
-  }
+.heading__link:hover {
+  color: $header-link--hover;
 }
