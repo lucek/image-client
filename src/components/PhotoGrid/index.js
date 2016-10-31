@@ -56,6 +56,8 @@ const PhotoGrid = React.createClass({
       return photo.is_album === false;
     });
 
+    // imgur api returns not only phots, but albums as well, so we need to
+    // take albums' covers if there's not enough photos to display
     if (photos.length < PhotoGrid.photosCount) {
       const missingCount = PhotoGrid.photosCount - photos.length;
       const albums = apiResponse.data.filter((photo) => {
