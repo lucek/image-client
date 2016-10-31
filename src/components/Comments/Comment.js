@@ -4,8 +4,7 @@ import './Comment.scss';
 
 const Comment = (props) => {
   const comment = props.comment;
-  const level = props.level;
-  const width = `${95 - (props.level*5)}%`;
+  const width = `${95 - (props.level * 5)}%`;
 
   return (
     <div style={{ width }} key={comment.id} className="comment">
