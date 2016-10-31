@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import './Comment.scss';
 
 const Comment = (props) => {
@@ -11,6 +12,9 @@ const Comment = (props) => {
       <div className="comment__header">
         <div className="comment__header__author">
           {comment.author}
+        </div>
+        <div className="comment__header__date">
+          ({moment.unix(comment.datetime).format('DD/MM/YYYY - hh:mm')})
         </div>
       </div>
       <span className="comment__content">

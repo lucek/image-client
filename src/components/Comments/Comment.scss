@@ -10,3 +10,8 @@
   border-bottom: 1px solid #999;
   margin-bottom: 5px;
 }
+
+.comment__header__author, .comment__header__date {
+  display: inline;
+  margin-right: 10px;
+}
