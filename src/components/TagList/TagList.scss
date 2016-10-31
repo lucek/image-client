@@ -8,13 +8,13 @@
   font-size: 16px;
   opacity: 0.75;
   border-right: 2px solid #3a3a3a;
+}
 
-  &:last-child {
-    border-right: none;
-  }
+.tagList__link:last-child {
+  border-right: none;
+}
 
-  &:hover {
-    opacity: 1;
-    color: $header-link--hover;
-  }
+.tagList__link:hover {
+  opacity: 1;
+  color: $header-link--hover;
 }
