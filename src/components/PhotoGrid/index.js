@@ -14,6 +14,7 @@ const StoreState = (state) => ({
 
 const PhotoGrid = React.createClass({
   propTypes: {
+    photos: React.PropTypes.photos.isRequired,
     url: React.PropTypes.string.isRequired,
   },
 
